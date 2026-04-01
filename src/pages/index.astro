@@ -1,12 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <Layout title="Home">
   <div class="home">
     <div class="hero">
       <div class="headshot-wrap">
-        <img src="/headshot.png" alt="Christina M. Bradley" />
+        <img src={`${base}/headshot.png`} alt="Christina M. Bradley" />
       </div>
 
       <div class="hero-text">
@@ -24,60 +25,30 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
 
+    <section class="about-intro">
+      <p>
+        Christina Bradley is a PhD candidate in the Management and Organization's department at
+        the University of Michigan's Ross School of Business. She conducts research on emotions
+        within workplace social interactions.
+      </p>
+    </section>
+
     <section class="about">
-      <h2>About</h2>
+      <h2>About Christina M. Bradley</h2>
       <p>
-        I am a PhD candidate in the Management and Organizations department at the University of
-        Michigan's Ross School of Business. My research examines how responses to emotion
-        expressions impact important workplace outcomes. I have developed a framework for
-        understanding optimal emotional responses in challenging work contexts — including
-        conflicts, negotiations, and workplace hierarchies.
+        Christina's research focuses on how responses to emotion expressions impact important
+        workplace outcomes. She has introduced a theoretical framework to understand how best to
+        respond to the emotions of others at work, which she has applied in her ensuing empirical
+        projects across a variety of challenging work contexts, including conflicts, negotiations,
+        and workplace hierarchies. Her most recent work begins to explore how individuals can
+        express their emotions in ways that elicit more helpful responses to their emotions.
       </p>
       <p>
-        My recent work explores how individuals can express their emotions in ways that elicit
-        more helpful responses. My dissertation, <em>Talking About Emotions Across Ranks: How,
-        When, and Why it Improves Team Performance</em>, received the OB Division's nomination
-        for the Academy of Management William H. Newman Award (2024 &amp; 2025) and is the
-        recipient of the University of Michigan's Rackham Predoctoral Fellowship.
+        Christina's research has been published in the <em>Academy of Management Annals</em> and
+        she has also published articles in popular press outlets such as the
+        <em>Harvard Business Review Magazine</em>, <em>Harvard Business Review</em>, and
+        <em>MIT Sloan Management Review</em>.
       </p>
-      <p>
-        My work has appeared in <em>Academy of Management Annals</em>, <em>Harvard Business
-        Review Magazine</em>, <em>Harvard Business Review</em>, and <em>MIT Sloan Management
-        Review</em>.
-      </p>
-    </section>
-
-    <section class="research-interests">
-      <h2>Research Interests</h2>
-      <p>
-        My research focuses on (1) how individuals respond to the emotions of others and
-        (2) how individuals express emotions in ways that enhance individual, relational, and
-        team effectiveness. I am especially interested in emotion responding and expression in
-        challenging situations, such as conflict and hierarchy.
-      </p>
-    </section>
-
-    <section class="highlights">
-      <h2>Recent Highlights</h2>
-      <ul class="highlight-list">
-        <li>
-          <strong>Finalist</strong> for the William H. Newman Award, Academy of Management (2025)
-        </li>
-        <li>
-          <strong>Rackham Predoctoral Fellowship</strong>, University of Michigan (2024–2025)
-        </li>
-        <li>
-          <strong>Best Reviewer Award</strong>, AoM Organizational Behavior Division (2024)
-        </li>
-        <li>
-          Invited research talks at <strong>Harvard Business School</strong>, <strong>Rice University</strong>,
-          and <strong>UT Austin McCombs</strong> (2024)
-        </li>
-        <li>
-          Publication in <em>Academy of Management Annals</em> featured in
-          <em>Harvard Business Review Magazine</em> (2024)
-        </li>
-      </ul>
     </section>
   </div>
 </Layout>
@@ -136,18 +107,10 @@ import Layout from '../layouts/Layout.astro';
     color: var(--navy-light);
   }
 
-  /* ── Highlights ── */
-  .highlight-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-  }
-
-  .highlight-list li {
-    padding-left: 1.2rem;
-    border-left: 3px solid var(--border);
-    font-size: 0.95rem;
+  .about-intro {
+    margin-top: 2rem;
+    font-size: 1.02rem;
+    color: var(--text-light);
   }
 
   /* ── Responsive ── */
