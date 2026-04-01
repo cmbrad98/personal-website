@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="CV" description="Curriculum Vitae of Christina M. Bradley">
+  <div class="cv-page">
+    <div class="cv-header">
+      <h1>Curriculum Vitae</h1>
+      <a href="/CV_ChristinaBradley.pdf" download class="download-btn">
+        Download PDF
+      </a>
+    </div>
+
+    <div class="cv-viewer">
+      <iframe
+        src="/CV_ChristinaBradley.pdf"
+        title="Christina M. Bradley — Curriculum Vitae"
+        width="100%"
+        height="900"
+      ></iframe>
+    </div>
+
+    <p class="cv-note">
+      If the PDF does not display above, you can
+      <a href="/CV_ChristinaBradley.pdf" target="_blank" rel="noopener">open it in a new tab</a>
+      or <a href="/CV_ChristinaBradley.pdf" download>download it directly</a>.
+    </p>
+  </div>
+</Layout>
+
+<style>
+  .cv-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .cv-header h1 {
+    margin: 0;
+  }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--navy);
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  .download-btn::before {
+    content: "↓";
+    font-size: 1em;
+  }
+
+  .download-btn:hover {
+    background: var(--navy-light);
+    color: white;
+  }
+
+  .cv-viewer {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    background: white;
+  }
+
+  .cv-viewer iframe {
+    display: block;
+    border: none;
+  }
+
+  .cv-note {
+    margin-top: 0.9rem;
+    font-size: 0.87rem;
+    color: var(--text-light);
+  }
+
+  @media (max-width: 600px) {
+    .cv-viewer iframe {
+      height: 600px;
+    }
+  }
+</style>

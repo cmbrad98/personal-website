@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Home">
+  <div class="home">
+    <div class="hero">
+      <div class="headshot-wrap">
+        <img src="/headshot.png" alt="Christina M. Bradley" />
+      </div>
+
+      <div class="hero-text">
+        <p class="section-label">PhD Candidate</p>
+        <h1>Christina M. Bradley</h1>
+        <p class="tagline">I study how emotions influence collaboration.</p>
+        <div class="affiliation">
+          <p>Department of Management &amp; Organizations<br />
+          Stephen M. Ross School of Business<br />
+          University of Michigan</p>
+        </div>
+        <div class="contact">
+          <a href="mailto:cmbrad@umich.edu">cmbrad@umich.edu</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="about">
+      <h2>About</h2>
+      <p>
+        I am a PhD candidate in the Management and Organizations department at the University of
+        Michigan's Ross School of Business. My research examines how responses to emotion
+        expressions impact important workplace outcomes. I have developed a framework for
+        understanding optimal emotional responses in challenging work contexts — including
+        conflicts, negotiations, and workplace hierarchies.
+      </p>
+      <p>
+        My recent work explores how individuals can express their emotions in ways that elicit
+        more helpful responses. My dissertation, <em>Talking About Emotions Across Ranks: How,
+        When, and Why it Improves Team Performance</em>, received the OB Division's nomination
+        for the Academy of Management William H. Newman Award (2024 &amp; 2025) and is the
+        recipient of the University of Michigan's Rackham Predoctoral Fellowship.
+      </p>
+      <p>
+        My work has appeared in <em>Academy of Management Annals</em>, <em>Harvard Business
+        Review Magazine</em>, <em>Harvard Business Review</em>, and <em>MIT Sloan Management
+        Review</em>.
+      </p>
+    </section>
+
+    <section class="research-interests">
+      <h2>Research Interests</h2>
+      <p>
+        My research focuses on (1) how individuals respond to the emotions of others and
+        (2) how individuals express emotions in ways that enhance individual, relational, and
+        team effectiveness. I am especially interested in emotion responding and expression in
+        challenging situations, such as conflict and hierarchy.
+      </p>
+    </section>
+
+    <section class="highlights">
+      <h2>Recent Highlights</h2>
+      <ul class="highlight-list">
+        <li>
+          <strong>Finalist</strong> for the William H. Newman Award, Academy of Management (2025)
+        </li>
+        <li>
+          <strong>Rackham Predoctoral Fellowship</strong>, University of Michigan (2024–2025)
+        </li>
+        <li>
+          <strong>Best Reviewer Award</strong>, AoM Organizational Behavior Division (2024)
+        </li>
+        <li>
+          Invited research talks at <strong>Harvard Business School</strong>, <strong>Rice University</strong>,
+          and <strong>UT Austin McCombs</strong> (2024)
+        </li>
+        <li>
+          Publication in <em>Academy of Management Annals</em> featured in
+          <em>Harvard Business Review Magazine</em> (2024)
+        </li>
+      </ul>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .home {
+    max-width: 760px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  .headshot-wrap {
+    flex-shrink: 0;
+  }
+
+  .headshot-wrap img {
+    width: 180px;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .hero-text {
+    padding-top: 0.25rem;
+  }
+
+  .hero-text h1 {
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tagline {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 1.1rem;
+  }
+
+  .affiliation {
+    font-size: 0.92rem;
+    color: var(--text-light);
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+
+  .contact a {
+    font-size: 0.92rem;
+    color: var(--navy-light);
+  }
+
+  /* ── Highlights ── */
+  .highlight-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .highlight-list li {
+    padding-left: 1.2rem;
+    border-left: 3px solid var(--border);
+    font-size: 0.95rem;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 560px) {
+    .hero {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
