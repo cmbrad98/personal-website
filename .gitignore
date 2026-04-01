@@ -1,0 +1,19 @@
+# Node / Astro
+node_modules/
+.cache/
+dist/
+public/build/
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/
+
+# Environment
+.env
+
+# Logs
+*.log
+
+# Optional temporary files
+/tmp/
