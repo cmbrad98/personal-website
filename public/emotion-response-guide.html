@@ -53,9 +53,9 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .main-content{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
 
 /* ===== INTRO CARD ===== */
-.intro-card{background:var(--white);border-radius:20px;padding:2.5rem;box-shadow:var(--shadow);text-align:center;margin-bottom:1.5rem}
+.intro-card{background:var(--white);border-radius:20px;padding:2.5rem;box-shadow:var(--shadow);text-align:left;margin-bottom:1.5rem}
 .intro-card h2{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:1rem}
-.intro-card p{color:var(--text-mid);max-width:580px;margin:0 auto .75rem;font-size:.97rem}
+.intro-card p{color:var(--text-mid);max-width:580px;margin:0 0 .75rem;font-size:.97rem}
 .start-btn{display:inline-block;margin-top:1.25rem;background:var(--navy);color:white;border:none;padding:.85rem 2.5rem;border-radius:50px;font-size:1.05rem;font-weight:600;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 16px rgba(28,53,87,.25)}
 .start-btn:hover{background:var(--navy-mid);transform:translateY(-2px);box-shadow:0 8px 24px rgba(28,53,87,.3)}
 
@@ -703,13 +703,13 @@ function renderIntro() {
 
 function renderScenario() {
   return `
-    <div class="question-card" style="text-align:center;padding:3rem 2.5rem">
-      <div class="question-number" style="justify-content:center">Before we begin</div>
+    <div class="question-card" style="text-align:left;padding:3rem 2.5rem">
+      <div class="question-number">Before we begin</div>
       <div class="question-text" style="font-size:1.5rem;margin-bottom:1rem">Think of a recent moment when someone expressed an emotion to you at work.</div>
-      <p style="color:var(--text-mid);font-size:.97rem;max-width:480px;margin:0 auto 2rem;line-height:1.7">It could be a colleague sharing frustration, a direct report expressing anxiety, a teammate celebrating good news, or any other emotional moment. Hold that specific situation in mind as you work through the questions.</p>
+      <p style="color:var(--text-mid);font-size:.97rem;max-width:480px;margin:0 0 2rem;line-height:1.7">It could be a colleague sharing frustration, a direct report expressing anxiety, a teammate celebrating good news, or any other emotional moment. Hold that specific situation in mind as you work through the questions.</p>
       <button class="start-btn" onclick="continueToWizard()">I have a situation in mind →</button>
       <div style="margin-top:1rem">
-        <button class="back-btn" style="display:inline-flex;margin:0 auto" onclick="showIntro()"> Back</button>
+        <button class="back-btn" onclick="showIntro()"> Back</button>
       </div>
     </div>
   `;
@@ -1005,12 +1005,33 @@ function showModal(strategyId) {
   `;
 
   const modal = document.getElementById("strategy-modal");
+
+  // When embedded in an iframe, position:fixed is relative to the iframe's
+  // full height, not the user's visible screen. Reposition the overlay to
+  // cover only the currently-visible portion of the iframe so the dialog
+  // appears in the center of the screen.
+  if (window.self !== window.top) {
+    try {
+      const parentH = window.parent.innerHeight;
+      const iframeTop = window.frameElement.getBoundingClientRect().top;
+      modal.style.position = 'absolute';
+      modal.style.top = Math.max(0, -iframeTop) + 'px';
+      modal.style.height = parentH + 'px';
+      modal.style.bottom = 'auto';
+    } catch(e) {}
+  }
+
   modal.removeAttribute("hidden");
   modal.focus();
 }
 
 function hideModal() {
-  document.getElementById("strategy-modal").setAttribute("hidden", "");
+  const modal = document.getElementById("strategy-modal");
+  modal.setAttribute("hidden", "");
+  modal.style.position = '';
+  modal.style.top = '';
+  modal.style.height = '';
+  modal.style.bottom = '';
 }
 
 document.getElementById("modal-close-btn").addEventListener("click", hideModal);

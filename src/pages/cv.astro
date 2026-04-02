@@ -31,16 +31,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <style>
   .cv-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
+    position: relative;
     margin-bottom: 1.75rem;
   }
 
   .cv-header h1 {
     margin: 0;
+  }
+
+  .cv-header .download-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .download-btn {

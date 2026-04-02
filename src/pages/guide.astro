@@ -31,7 +31,7 @@ import Layout from '../layouts/Layout.astro';
 <style>
   .guide-intro {
     margin-bottom: 2rem;
-    text-align: center;
+    text-align: left;
   }
 
   .guide-intro h1 {
@@ -88,5 +88,6 @@ import Layout from '../layouts/Layout.astro';
       const iframeTop = iframe.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({ top: Math.max(0, iframeTop - 80), behavior: 'smooth' });
     }
+
   });
 </script>
