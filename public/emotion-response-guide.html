@@ -910,13 +910,16 @@ function renderLandscape(nexus) {
       <div style="font-size:.73rem;color:var(--text-light);text-align:center;margin-top:.75rem;font-style:italic">
         ★ Starred strategies are recommended for your situation · Click any strategy to see its definition
       </div>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:.75rem">
-        ${Object.entries(QUADRANT_META).map(([qid, meta]) => `
-          <span style="display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:600;color:${meta.color}">
-            <span style="width:10px;height:10px;border-radius:3px;background:${meta.bg};border:1.5px solid ${meta.color};display:inline-block"></span>
-            ${meta.label.replace("\n"," · ")}
-          </span>
-        `).join("")}
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem .75rem;margin-top:.75rem;max-width:480px;margin-left:auto;margin-right:auto">
+        ${[["hi_lc","hi_hc"],["li_lc","li_hc"]].map(row =>
+          row.map(qid => {
+            const meta = QUADRANT_META[qid];
+            return `<span style="display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:600;color:${meta.color}">
+              <span style="width:10px;height:10px;border-radius:3px;background:${meta.bg};border:1.5px solid ${meta.color};flex-shrink:0;display:inline-block"></span>
+              ${meta.label.replace("\n"," · ")}
+            </span>`;
+          }).join("")
+        ).join("")}
       </div>
     </div>
   `;
