@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responding to Emotions at Work — Interactive Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --navy:#1C3557;
+  --navy-mid:#2A4F7A;
+  --navy-light:#3A6EA5;
+  --gold:#C4922A;
+  --gold-light:#E8B84B;
+  --bg:#F7F5F2;
+  --white:#FFFFFF;
+  --text:#1A1A2E;
+  --text-mid:#455068;
+  --text-light:#6B7A99;
+  --border:#DDD8D0;
+  --shadow:0 4px 24px rgba(28,53,87,0.10);
+  --shadow-sm:0 2px 12px rgba(28,53,87,0.07);
+
+  --hi-lc:#155E75;
+  --hi-lc-bg:#E0F4FA;
+  --hi-lc-border:#155E75;
+
+  --hi-hc:#5B21B6;
+  --hi-hc-bg:#EDE9FF;
+  --hi-hc-border:#5B21B6;
+
+  --li-lc:#166534;
+  --li-lc-bg:#DCFCE7;
+  --li-lc-border:#166534;
+
+  --li-hc:#9B1C1C;
+  --li-hc-bg:#FEE2E2;
+  --li-hc-border:#9B1C1C;
+}
+
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+
+/* ===== HEADER ===== */
+.site-header{background:var(--navy);color:white;padding:2.5rem 1.5rem 2rem;text-align:center}
+.site-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.25;margin-bottom:.75rem;font-weight:700}
+.site-header .subtitle{font-size:.95rem;opacity:.85;max-width:620px;margin:0 auto}
+.site-header .byline{font-size:.8rem;opacity:.6;margin-top:.5rem;font-style:italic}
+
+/* ===== MAIN ===== */
+.main-content{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
+
+/* ===== INTRO CARD ===== */
+.intro-card{background:var(--white);border-radius:20px;padding:2.5rem;box-shadow:var(--shadow);text-align:center;margin-bottom:1.5rem}
+.intro-card h2{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:1rem}
+.intro-card p{color:var(--text-mid);max-width:580px;margin:0 auto .75rem;font-size:.97rem}
+.start-btn{display:inline-block;margin-top:1.25rem;background:var(--navy);color:white;border:none;padding:.85rem 2.5rem;border-radius:50px;font-size:1.05rem;font-weight:600;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 16px rgba(28,53,87,.25)}
+.start-btn:hover{background:var(--navy-mid);transform:translateY(-2px);box-shadow:0 8px 24px rgba(28,53,87,.3)}
+
+/* ===== PROGRESS ===== */
+.progress-container{margin-bottom:1.75rem}
+.progress-label{font-size:.82rem;color:var(--text-light);margin-bottom:.5rem;font-weight:500}
+.progress-bar-track{background:#E2DDD8;border-radius:99px;height:6px;overflow:hidden}
+.progress-bar-fill{background:var(--navy);height:6px;border-radius:99px;transition:width .4s ease}
+.step-dots{display:flex;gap:.5rem;margin-top:.6rem}
+.step-dot{width:8px;height:8px;border-radius:50%;background:#DDD8D0;transition:background .3s}
+.step-dot.active{background:var(--navy)}
+.step-dot.done{background:var(--navy-light)}
+
+/* ===== QUESTION CARD ===== */
+.question-card{background:var(--white);border-radius:20px;padding:2.25rem;box-shadow:var(--shadow);animation:slideIn .35s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.question-number{font-size:.78rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.question-text{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);line-height:1.4;margin-bottom:.5rem;font-weight:700}
+.question-hint{font-size:.88rem;color:var(--text-light);margin-bottom:1.75rem}
+
+.options-grid{display:grid;gap:1rem}
+.option-btn{background:var(--white);border:2px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem;text-align:left;cursor:pointer;transition:border-color .2s,background .2s,transform .15s,box-shadow .2s;display:flex;gap:1rem;align-items:flex-start}
+.option-btn:hover{border-color:var(--navy);background:#F0F4F8;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.option-icon{font-size:1.6rem;line-height:1;flex-shrink:0;margin-top:.1rem}
+.option-body{}
+.option-label{font-weight:600;font-size:1.02rem;color:var(--navy);margin-bottom:.2rem}
+.option-desc{font-size:.87rem;color:var(--text-mid)}
+
+.back-btn{margin-top:1rem;background:none;border:none;color:var(--text-light);cursor:pointer;font-size:.88rem;font-weight:500;padding:.5rem 0;display:flex;align-items:center;gap:.3rem}
+.back-btn:hover{color:var(--navy)}
+.back-btn::before{content:"←"}
+
+/* ===== CONTEXT TRAIL ===== */
+.context-trail{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem}
+.trail-chip{background:var(--navy);color:white;border-radius:99px;padding:.25rem .75rem;font-size:.78rem;font-weight:500;opacity:.85}
+
+/* ===== RESULT ===== */
+.result-container{animation:slideIn .4s ease}
+.nexus-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--navy);color:white;border-radius:99px;padding:.35rem 1rem;font-size:.82rem;font-weight:600;margin-bottom:1rem}
+.nexus-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+
+.result-header{background:var(--white);border-radius:20px;padding:2rem;box-shadow:var(--shadow);margin-bottom:1.5rem}
+.result-header h2{font-family:'Playfair Display',serif;font-size:1.55rem;color:var(--navy);margin-bottom:.6rem;line-height:1.3}
+.result-synopsis{font-size:.9rem;color:var(--text-mid);border-left:3px solid var(--gold);padding-left:1rem;margin-bottom:1rem;font-style:italic}
+.result-desc{font-size:.96rem;color:var(--text);line-height:1.7}
+
+.restart-btn{background:none;border:2px solid var(--border);border-radius:99px;padding:.55rem 1.4rem;font-size:.88rem;font-weight:600;color:var(--text-mid);cursor:pointer;transition:border-color .2s,color .2s;margin-top:1rem}
+.restart-btn:hover{border-color:var(--navy);color:var(--navy)}
+
+/* ===== SECTION LABELS ===== */
+.section-label{font-size:.78rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.8rem;margin-top:1.75rem}
+
+/* ===== LANDSCAPE ===== */
+.landscape-wrapper{background:var(--white);border-radius:20px;box-shadow:var(--shadow);padding:1.5rem;overflow-x:auto}
+.landscape-title{font-size:.9rem;font-weight:600;color:var(--navy);margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
+.landscape-title::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;background:var(--gold)}
+
+.landscape-axes-wrapper{position:relative;min-width:500px}
+
+.axis-labels-v{display:flex;flex-direction:column;align-items:center;justify-content:space-between;position:absolute;left:0;top:28px;bottom:28px;width:24px;pointer-events:none}
+.axis-labels-h{display:flex;justify-content:space-between;align-items:center;padding:0 28px;margin-bottom:6px}
+.axis-label-text{font-size:.7rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.axis-label-v-text{font-size:.68rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:.04em;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;white-space:nowrap}
+
+.landscape-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:#E2DDD8;border-radius:14px;overflow:hidden;margin-left:28px}
+
+.quadrant{padding:1rem;transition:background .3s,opacity .3s}
+.quadrant.dimmed{opacity:.38}
+.quadrant.highlighted{opacity:1}
+
+.quadrant.hi_hc{background:var(--hi-hc-bg)}
+.quadrant.hi_hc.highlighted{background:var(--hi-hc-bg);outline:3px solid var(--hi-hc);outline-offset:-3px;border-radius:2px}
+.quadrant.hi_lc{background:var(--hi-lc-bg)}
+.quadrant.hi_lc.highlighted{background:var(--hi-lc-bg);outline:3px solid var(--hi-lc);outline-offset:-3px;border-radius:2px}
+.quadrant.li_hc{background:var(--li-hc-bg)}
+.quadrant.li_hc.highlighted{background:var(--li-hc-bg);outline:3px solid var(--li-hc);outline-offset:-3px;border-radius:2px}
+.quadrant.li_lc{background:var(--li-lc-bg)}
+.quadrant.li_lc.highlighted{background:var(--li-lc-bg);outline:3px solid var(--li-lc);outline-offset:-3px;border-radius:2px}
+
+.quadrant-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.65rem;line-height:1.3}
+.hi_hc .quadrant-label{color:var(--hi-hc)}
+.hi_lc .quadrant-label{color:var(--hi-lc)}
+.li_hc .quadrant-label{color:var(--li-hc)}
+.li_lc .quadrant-label{color:var(--li-lc)}
+
+.strategy-pills{display:flex;flex-wrap:wrap;gap:.4rem}
+.pill{border:none;border-radius:99px;padding:.3rem .75rem;font-size:.78rem;font-weight:500;cursor:pointer;transition:transform .15s,box-shadow .15s,opacity .2s;background:rgba(255,255,255,0.7);color:var(--text-mid);white-space:nowrap}
+.pill:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.12)}
+
+.pill.recommended{font-weight:700;color:white;position:relative}
+.hi_lc .pill.recommended{background:var(--hi-lc)}
+.hi_hc .pill.recommended{background:var(--hi-hc)}
+.li_lc .pill.recommended{background:var(--li-lc)}
+.li_hc .pill.recommended{background:var(--li-hc)}
+
+.pill.recommended .pill-star{margin-left:.25rem;font-size:.65rem;opacity:.9}
+
+/* Landscape axis arrows */
+.h-arrow{display:flex;align-items:center;justify-content:space-between;padding:0 28px;margin-top:6px;pointer-events:none}
+.arrow-label{font-size:.68rem;color:var(--text-light);font-weight:500}
+.arrow-line{flex:1;height:2px;background:linear-gradient(90deg,#155E75 0%,#DDD8D0 50%,#9B1C1C 100%);margin:0 8px;border-radius:99px;position:relative}
+.arrow-line::before{content:"←";position:absolute;left:-14px;top:-9px;font-size:.9rem;color:#155E75}
+.arrow-line::after{content:"→";position:absolute;right:-14px;top:-9px;font-size:.9rem;color:#9B1C1C}
+
+.v-arrow-container{position:absolute;left:-22px;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;pointer-events:none}
+.v-arrow-line{flex:1;width:2px;background:linear-gradient(to bottom,#155E75 0%,#DDD8D0 50%,#9B1C1C 100%);border-radius:99px;margin:8px 0}
+
+/* ===== RECOMMENDED STRATEGIES SECTION ===== */
+.rec-strategies-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;margin-top:.8rem}
+.strategy-card{background:var(--white);border-radius:14px;padding:1.2rem;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .15s,box-shadow .2s;border:1.5px solid var(--border)}
+.strategy-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.strategy-card-name{font-weight:700;font-size:.97rem;color:var(--navy);margin-bottom:.35rem;display:flex;align-items:center;gap:.4rem}
+.strategy-card-name .card-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0}
+.strategy-card-def{font-size:.83rem;color:var(--text-mid);line-height:1.5}
+.strategy-card-example{font-size:.8rem;color:var(--text-light);margin-top:.5rem;font-style:italic}
+.strategy-card-more{font-size:.78rem;color:var(--navy-light);font-weight:600;margin-top:.6rem}
+
+/* ===== MODAL ===== */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,20,40,.55);display:flex;align-items:center;justify-content:center;z-index:1000;padding:1.5rem;animation:fadeIn .2s ease}
+.modal-overlay[hidden]{display:none}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.modal-dialog{background:var(--white);border-radius:20px;padding:2rem;max-width:520px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);position:relative;animation:popIn .25s ease}
+@keyframes popIn{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
+
+.modal-close{position:absolute;top:1rem;right:1rem;background:var(--bg);border:none;width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;color:var(--text-mid);display:flex;align-items:center;justify-content:center;transition:background .15s}
+.modal-close:hover{background:#E2DDD8}
+
+.modal-quadrant-tag{display:inline-block;border-radius:99px;padding:.2rem .7rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.85rem}
+.modal-strategy-name{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--navy);margin-bottom:.75rem;line-height:1.3}
+.modal-definition-label{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+.modal-definition{font-size:.97rem;color:var(--text);line-height:1.65;margin-bottom:1rem}
+.modal-example-label{font-size:.72rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+.modal-example{font-size:.92rem;color:var(--text-mid);font-style:italic;background:var(--bg);padding:.75rem 1rem;border-radius:10px;line-height:1.5}
+.modal-source{font-size:.78rem;color:var(--text-light);margin-top:.8rem}
+
+/* ===== ATTRIBUTION ===== */
+.attribution{background:var(--white);border-radius:16px;padding:1.5rem;margin-top:2rem;box-shadow:var(--shadow-sm);font-size:.85rem;color:var(--text-mid);text-align:center;line-height:1.7}
+.attribution strong{color:var(--navy)}
+
+/* ===== SEQUENCE TIP ===== */
+.sequence-tip{background:#EDE9FF;border:1.5px solid #7C5CBF;border-radius:12px;padding:1.1rem 1.25rem;margin-top:1rem}
+.sequence-tip-label{font-weight:700;font-size:.88rem;color:#5B21B6;margin-bottom:.4rem}
+.sequence-tip-text{font-size:.87rem;color:#3B2060;line-height:1.65}
+
+/* ===== KEY INSIGHTS ===== */
+.insights-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:.8rem}
+.insight-card{background:var(--white);border-radius:14px;padding:1.25rem;box-shadow:var(--shadow-sm);border:1.5px solid var(--border);display:flex;gap:1rem;align-items:flex-start}
+.insight-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem}
+.insight-body{}
+.insight-title{font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:.4rem;line-height:1.35}
+.insight-text{font-size:.85rem;color:var(--text-mid);line-height:1.65}
+
+/* ===== HBR CARD ===== */
+.hbr-card{background:var(--white);border-radius:20px;padding:1.75rem;box-shadow:var(--shadow-sm);margin-bottom:1.5rem;border-top:4px solid var(--gold)}
+.hbr-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--gold);margin-bottom:1rem}
+.hbr-items{display:flex;flex-direction:column;gap:.75rem}
+.hbr-item{display:flex;align-items:center;gap:1rem;text-decoration:none;color:inherit;background:var(--bg);border-radius:12px;padding:1rem 1.1rem;border:1.5px solid var(--border);transition:border-color .2s,transform .15s,box-shadow .15s}
+.hbr-item:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.hbr-item-icon{font-size:1.5rem;flex-shrink:0}
+.hbr-item-body{flex:1}
+.hbr-item-source{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.15rem}
+.hbr-item-title{font-weight:600;font-size:.97rem;color:var(--navy);line-height:1.3;margin-bottom:.2rem}
+.hbr-item-byline{font-size:.8rem;color:var(--text-light)}
+.hbr-item-arrow{font-size:1.1rem;color:var(--gold);flex-shrink:0;font-weight:700}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+  .question-card{padding:1.5rem}
+  .intro-card{padding:1.5rem}
+  .result-header{padding:1.5rem}
+  .landscape-wrapper{padding:1rem}
+  .rec-strategies-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>How Should You Respond to Someone's Emotions at Work?</h1>
+  <p class="subtitle">An interactive guide to navigating emotion-response strategies<br>based on the specific context of your situation</p>
+  <p class="byline">Based on Bradley, Greer, Trinh & Sanchez-Burks (2024) — <em>Academy of Management Annals, 18</em>(1), 3–43</p>
+</header>
+
+<main class="main-content">
+  <div id="app"></div>
+</main>
+
+<div id="strategy-modal" class="modal-overlay" hidden>
+  <div class="modal-dialog">
+    <button class="modal-close" id="modal-close-btn" aria-label="Close">×</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+
+const STRATEGIES = {
+  // ── Higher Involvement, Lower Change ──────────────────────
+  validation: {
+    name: "Validation",
+    quadrant: "hi_lc",
+    definition: "Expressing understanding of another person's emotional experience without directly trying to change their emotion.",
+    example: '"Given what happened, it makes sense why you feel that way."',
+    source: "Shenk & Fruzzetti, 2011; Linehan, 1997"
+  },
+  inquiry: {
+    name: "Inquiry",
+    quadrant: "hi_lc",
+    definition: "Showing interest in and curiosity about another person's point of view or emotions.",
+    example: 'Open-ended questions such as "How are you feeling about this?"',
+    source: "Main et al., 2019"
+  },
+  emotional_acknowledgment: {
+    name: "Emotional Acknowledgment",
+    quadrant: "hi_lc",
+    definition: "Verbal communication by which a perceiver signals the recognition of an expresser's emotional display.",
+    example: '"Hey, I notice you seem stressed today — that sounds really difficult."',
+    source: "Yu et al., 2021; Parke et al., 2022"
+  },
+  active_constructive: {
+    name: "Active-Constructive Response",
+    quadrant: "hi_lc",
+    definition: "Enthusiastic support in response to a person sharing good news, showing genuine excitement and interest in their positive emotion.",
+    example: '"That is so exciting! Tell me everything — how did it go?"',
+    source: "Gable et al., 2004, 2006"
+  },
+  reflective_listening: {
+    name: "Reflective Listening",
+    quadrant: "hi_lc",
+    definition: "Putting one's understanding of another's emotions into one's own words and feeding it back for the expresser's verification.",
+    example: '"What I hear you saying is that you are frustrated and feel like your effort wasn\'t recognized."',
+    source: "Gordon, 1970; Heaphy, 2017"
+  },
+  empathic_communication: {
+    name: "Empathic Communication",
+    quadrant: "hi_lc",
+    definition: "The intentional and explicit communication that conveys a person hears, understands, or seeks to understand another's feelings, emotions, or experiences.",
+    example: '"I feel for you — I can really put myself in your shoes in this situation."',
+    source: "Parke et al., 2022"
+  },
+  apologizing: {
+    name: "Apologizing",
+    quadrant: "hi_lc",
+    definition: "A social account made by a transgressor toward a party they have offended or harmed.",
+    example: '"I am so sorry — I didn\'t realize my comment landed that way and I understand why it upset you."',
+    source: "Leonard et al., 2011; Fehr & Gelfand, 2010"
+  },
+  affiliative_touch: {
+    name: "Affiliative Touch",
+    quadrant: "hi_lc",
+    definition: "Touch in response to someone's emotion that conveys care, warmth, and presence.",
+    example: "Handholding, a gentle hand-squeeze, or a supportive hand on the shoulder.",
+    source: "Wingenbach et al., 2021; Flores & Berenbaum, 2017"
+  },
+
+  // ── Higher Involvement, Higher Change ──────────────────────
+  comfort: {
+    name: "Comfort",
+    quadrant: "hi_hc",
+    definition: "Attempting to alleviate a person's distress through expressions of care and reassurance.",
+    example: '"I\'m here for you. It is going to be okay."',
+    source: "Thoits, 1996"
+  },
+  positive_reframing: {
+    name: "Positive Reframing",
+    quadrant: "hi_hc",
+    definition: "Offering an alternative, more constructive view of the situation to help someone think about it differently.",
+    example: '"Would you have felt another way about this situation? What might be another interpretation?"',
+    source: "Lepore et al., 2004"
+  },
+  reappraisal: {
+    name: "Reappraisal",
+    quadrant: "hi_hc",
+    definition: "Providing someone with a different way of thinking about a distressing event to help shift their emotional experience.",
+    example: '"Are there other ways you can view this situation? What if this challenge is actually an opportunity to show what you\'re capable of?"',
+    source: "Lee et al., 2020; Matthews et al., 2022"
+  },
+  practical_support: {
+    name: "Practical Support",
+    quadrant: "hi_hc",
+    definition: "Providing advice, helpful information, guidance, or tangible aid to address the source of the emotion.",
+    example: '"Let me take a few things off your plate so you can focus on what matters most right now."',
+    source: "Jakubiak et al., 2020; Horowitz et al., 2001"
+  },
+  interpersonal_calming: {
+    name: "Interpersonal Calming",
+    quadrant: "hi_hc",
+    definition: "Communicating calm to reassure a partner that a concern is not as serious as it may seem.",
+    example: '"Don\'t worry. I\'ve seen you handle things like this before — it is all going to work out."',
+    source: "Parkinson et al., 2016"
+  },
+  humor: {
+    name: "Humor",
+    quadrant: "hi_hc",
+    definition: "Actions to amuse others or bring comedy to the situation to lighten the emotional load.",
+    example: "A well-timed lighthearted joke or witty remark that acknowledges the difficulty while easing tension.",
+    source: "Locke, 1996"
+  },
+  distraction: {
+    name: "Distraction",
+    quadrant: "hi_hc",
+    definition: "Any attempt to divert attention away from the emotional situation to help someone shift their emotional state.",
+    example: '"Let\'s take a quick break — come grab a coffee with me before your meeting."',
+    source: "Pauw et al., 2019; Matthews et al., 2022"
+  },
+  reassurance: {
+    name: "Reassurance",
+    quadrant: "hi_hc",
+    definition: "Intended to remove someone's doubts or fears by expressing confidence in their abilities or the outcome.",
+    example: '"You\'ve got this. You always end up making the right choice."',
+    source: "Sarason, 1984; Marigold et al., 2014"
+  },
+  up_regulation: {
+    name: "Up-Regulation",
+    quadrant: "hi_hc",
+    definition: "Instrumentally increasing someone else's emotions — sometimes to motivate or alert them to a concern.",
+    example: '"I want you to really feel how important this is — we need to act urgently on this."',
+    source: "Netzer et al., 2015; Aragón & Clark, 2018"
+  },
+
+  // ── Lower Involvement, Higher Change ──────────────────────
+  suppression: {
+    name: "Suppression",
+    quadrant: "li_hc",
+    definition: "Telling people to stop expressing their emotions.",
+    example: '"Cut it out. That is enough." / "Calm down, you\'re overreacting."',
+    source: "Little et al., 2012"
+  },
+  minimizing: {
+    name: "Minimizing",
+    quadrant: "li_hc",
+    definition: "Saying that the person is overreacting, attempting to force optimism, or downplaying the importance of their concerns.",
+    example: '"Oh, that\'s nothing. Wait until you hear what happened to me."',
+    source: "Ingram et al., 2001"
+  },
+  invalidation: {
+    name: "Invalidation",
+    quadrant: "li_hc",
+    definition: "Responses that convey that another person's emotions are inappropriate, unacceptable, illogical, too extreme, or trivial.",
+    example: '"You really shouldn\'t be feeling that way." / "That\'s not a reasonable reaction."',
+    source: "Shenk & Fruzzetti, 2011; Linehan, 1993"
+  },
+  emotional_criticism: {
+    name: "Emotional Criticism",
+    quadrant: "li_hc",
+    definition: "Expressions of negative affect and disapproval in response to another person's stress or emotional expression.",
+    example: '"I don\'t understand why you\'re making such a big deal out of this."',
+    source: "Abbey et al., 1995; Frazier et al., 2003"
+  },
+  punitive_reactions: {
+    name: "Punitive Reactions",
+    quadrant: "li_hc",
+    definition: "Punishing the person for expressing negative emotion.",
+    example: '"You can\'t proceed if you are going to keep feeling that way."',
+    source: "Martin et al., 2018"
+  },
+  interpersonal_alerting: {
+    name: "Interpersonal Alerting",
+    quadrant: "li_hc",
+    definition: "Expressing worry to draw an under-responsive partner's attention to potential concerns.",
+    example: '"I am not sure if you recognize the gravity of the situation."',
+    source: "Parkinson et al., 2016"
+  },
+
+  // ── Lower Involvement, Lower Change ──────────────────────
+  ignoring: {
+    name: "Ignoring",
+    quadrant: "li_lc",
+    definition: "Not reacting to the emotional signals of others.",
+    example: "Saying or doing nothing when you see an emotional expression; proceeding as if nothing happened.",
+    source: "DeCelles & Anteby, 2020; Gable et al., 2004"
+  },
+  avoiding: {
+    name: "Avoiding",
+    quadrant: "li_lc",
+    definition: "Keeping away from someone else's emotions without engaging with them.",
+    example: "Abruptly walking away, changing the subject, or deferring the conversation.",
+    source: "Frazier et al., 2003; Haase et al., 2016"
+  },
+  stonewalling: {
+    name: "Stonewalling",
+    quadrant: "li_lc",
+    definition: "Refusal to engage in further conversation around the emotions being discussed.",
+    example: "Shutting down communication entirely, going silent, or withdrawing from the interaction.",
+    source: "Gottman, 1993"
+  },
+  disregard: {
+    name: "Disregard",
+    quadrant: "li_lc",
+    definition: "Criticism, withdrawal, or dismissiveness in response to another's emotional expression.",
+    example: "Shifting eye contact away from the person, turning away, or giving dismissive one-word responses.",
+    source: "Bar-Kalifa et al., 2021; Gable et al., 2004"
+  }
+};
+
+const QUADRANT_META = {
+  hi_lc: { label: "Higher Involvement\nLower Change", color: "var(--hi-lc)", bg: "var(--hi-lc-bg)" },
+  hi_hc: { label: "Higher Involvement\nHigher Change", color: "var(--hi-hc)", bg: "var(--hi-hc-bg)" },
+  li_hc: { label: "Lower Involvement\nHigher Change", color: "var(--li-hc)", bg: "var(--li-hc-bg)" },
+  li_lc: { label: "Lower Involvement\nLower Change", color: "var(--li-lc)", bg: "var(--li-lc-bg)" }
+};
+
+const QUADRANT_STRATEGIES = {
+  hi_lc: ["emotional_acknowledgment","validation","inquiry","active_constructive","reflective_listening","empathic_communication","apologizing","affiliative_touch"],
+  hi_hc: ["comfort","positive_reframing","reappraisal","practical_support","interpersonal_calming","humor","distraction","reassurance","up_regulation"],
+  li_hc: ["suppression","minimizing","invalidation","emotional_criticism","punitive_reactions","interpersonal_alerting"],
+  li_lc: ["ignoring","avoiding","stonewalling","disregard"]
+};
+
+const NEXUSES = {
+  1: {
+    badge: "Nexus 1",
+    title: "Responding to Positive Emotions",
+    color: "#155E75",
+    synopsis: "When responding to positive emotions, higher involvement, lower change-oriented strategies may have the most positive effects on work outcomes.",
+    description: "When someone shares good news or expresses a positive emotion, they typically want to feel seen and to maintain that positive experience. The goal is not to redirect or change what they're feeling — it's to show genuine interest and enthusiasm. Research consistently shows that strategies like validation and active-constructive responses help people feel closer to the responder and maintain their positive mood, benefiting both the relationship and work outcomes.",
+    recommendedQuadrants: ["hi_lc"],
+    recommendedStrategies: ["validation","inquiry","active_constructive","reflective_listening","emotional_acknowledgment","empathic_communication"],
+    avoidNote: "Minimizing, ignoring, or attempting to change a positive emotion signals you don't share in their experience — research shows these strategies harm relationships and dampen positive outcomes."
+  },
+  2: {
+    badge: "Nexus 2",
+    title: "Responding to Negative Emotions You Caused",
+    color: "#155E75",
+    synopsis: "When responding to negative emotions caused by the responder, higher involvement, lower change-oriented strategies may have the most positive effects on work outcomes.",
+    description: "When you caused someone's negative emotion — through something you said, did, or failed to do — the first priority is to acknowledge their emotion and take responsibility. Research shows that jumping immediately to solutions or reframing (without first acknowledging) can inadvertently convey that their feelings aren't valid. An apology or acknowledgment first, followed by understanding, tends to decrease anger and build forgiveness, setting the stage for productive collaboration.",
+    recommendedQuadrants: ["hi_lc"],
+    recommendedStrategies: ["emotional_acknowledgment","apologizing","reflective_listening","inquiry","validation"],
+    avoidNote: "Avoiding, stonewalling, or immediately reframing without acknowledgment can deepen distress and damage trust — especially when the expresser knows you were the source."
+  },
+  3: {
+    badge: "Nexus 3",
+    title: "Responding in Low-Safety Relationships",
+    color: "#2D6A4F",
+    synopsis: "When responding to negative emotions the responder did not cause in relationships with low safety, moderate to lower involvement, lower change-oriented strategies may have the most positive effects on work outcomes.",
+    description: "In relationships with less established trust — such as with a supervisor, a client, or a newer colleague — the person sharing an emotion may want to be seen to some extent but also wants space and may not expect a deeply personal response. A lighter-touch acknowledgment (rather than high-involvement probing or deep emotional engagement) is typically more appropriate. Be discerning; consider engaging in private rather than public settings where the expresser might feel exposed.",
+    recommendedQuadrants: ["hi_lc","li_lc"],
+    recommendedStrategies: ["emotional_acknowledgment","reflective_listening","ignoring","avoiding"],
+    recNote: "Emotional Acknowledgment and Reflective Listening are best when used with a lighter touch. In some situations, respectfully giving someone space (Ignoring/Avoiding) may be the most appropriate response.",
+    avoidNote: "Higher change-oriented strategies (e.g., reframing, advice-giving) can feel presumptuous in low-safety relationships, making the expresser feel exposed or misunderstood."
+  },
+  4: {
+    badge: "Nexus 4",
+    title: "Responding When Emotions Are Overwhelming Performance",
+    color: "#5B21B6",
+    synopsis: "When responding to negative emotions the responder did not cause in situations with high relational safety and low task momentum, higher involvement, higher change-oriented strategies may have the most positive effects on work outcomes.",
+    description: "When someone is so overwhelmed by their emotion that it's interfering with their ability to work, they likely need help moving into a different emotional state. In a trusted relationship, strategies that help shift perspective, redirect attention, or regulate emotional intensity are most helpful. For example, distraction or reappraisal can help someone who is flooded with emotion refocus on an immediate task. The goal here is not dismissal — it's helping them access their capacity to act.",
+    recommendedQuadrants: ["hi_hc"],
+    recommendedStrategies: ["reappraisal","distraction","humor","practical_support","comfort","interpersonal_calming","reassurance"],
+    avoidNote: "Purely validating an overwhelming emotion without helping to shift it may prolong distress. Lower involvement strategies (ignoring, avoiding) can feel abandoning when someone is genuinely overwhelmed."
+  },
+  5: {
+    badge: "Nexus 5",
+    title: "Responding Under Immediate Time Pressure",
+    color: "#2D6A4F",
+    synopsis: "When responding to negative emotions the responder did not cause in situations with high relational safety, high task momentum, and a short time horizon, moderate to lower involvement, lower change-oriented strategies may have the most positive effects on work outcomes.",
+    description: "When someone has an immediate task ahead of them and appears to be managing their emotions (or those emotions may even be energizing their focus), a lighter response is often best. Their current emotional state is not preventing them from functioning — and heavy emotional engagement right before a high-stakes moment can be more disruptive than helpful. A brief acknowledgment signals care without derailing their preparation. Giving them space can also be a sign of respect.",
+    recommendedQuadrants: ["li_lc","hi_lc"],
+    recommendedStrategies: ["emotional_acknowledgment","ignoring","avoiding"],
+    recNote: "A brief Emotional Acknowledgment (e.g., a quick 'I see you — we'll talk after') conveys care. Respectfully giving someone space (Ignoring/Avoiding) can also be appropriate before an immediate task.",
+    avoidNote: "Deep emotional exploration, strong validation, or attempts to change their emotions can derail their focus right before they need to perform."
+  },
+  6: {
+    badge: "Nexus 6",
+    title: "Responding When There's Time to Connect",
+    color: "#155E75",
+    synopsis: "When responding to negative emotions the responder did not cause in situations with high relational safety, high task momentum, and a long time horizon, higher involvement, lower to moderate change-oriented strategies may have the most positive effects on work outcomes.",
+    description: "When a trusted colleague shares difficult emotions and there is no immediate pressure to act, prioritize connection over problem-solving. The expresser is likely seeking to feel heard and supported — not necessarily to change how they feel right away. Strategies that show you're present with their emotions (validation, acknowledgment, reflective listening) are most valuable here. Research suggests comfort and humor can also work well, and that after deeper connection is established, more change-oriented strategies like reappraisal may become helpful.",
+    recommendedQuadrants: ["hi_lc", "hi_hc"],
+    recommendedStrategies: ["validation","emotional_acknowledgment","comfort","reassurance","humor","reflective_listening"],
+    avoidNote: "Immediately jumping to advice-giving, reframing, or problem-solving — without first validating how they feel — can signal that you're more interested in fixing than listening.",
+    sequenceTip: "Because there's no immediate time pressure here, this situation is well-suited for a <strong>sequence of strategies</strong>. Start with higher involvement, lower change strategies — validation, acknowledgment, reflective listening — to help the person feel heard and meet their socio-affective needs first. Then, once their emotion is less intense and connection is established, you can shift toward more change-oriented strategies like reappraisal or reframing if longer-term recovery is needed. Leading with change before connection risks signaling that you're more interested in fixing than listening."
+  }
+};
+
+const QUESTIONS = [
+  {
+    id: 0,
+    stepLabel: "Step 1 of 5",
+    question: "What was the emotional valence of the emotion expressed?",
+    hint: "Consider the primary emotion they were sharing",
+    options: [
+      {
+        label: "Positive",
+        desc: "Excitement, pride, joy, enthusiasm, satisfaction, hope",
+        icon: "✨",
+        nexus: 1
+      },
+      {
+        label: "Negative",
+        desc: "Stress, anxiety, frustration, sadness, anger, overwhelm, fear",
+        icon: "🌧",
+        next: 1
+      }
+    ]
+  },
+  {
+    id: 1,
+    stepLabel: "Step 2 of 5",
+    question: "What was the source of their negative emotion?",
+    hint: "Understanding who or what triggered their feeling helps determine the best response",
+    options: [
+      {
+        label: "I was the source",
+        desc: "Something I said, did, or failed to do contributed to how they're feeling",
+        icon: "🤝",
+        nexus: 2
+      },
+      {
+        label: "Something or someone else",
+        desc: "A situation, another person, or external circumstances caused their emotion",
+        icon: "🌍",
+        next: 2
+      }
+    ]
+  },
+  {
+    id: 2,
+    stepLabel: "Step 3 of 5",
+    question: "How would you describe your relationship with this person?",
+    hint: "Relational safety refers to the level of trust, closeness, and psychological safety in the relationship",
+    options: [
+      {
+        label: "Lower safety",
+        desc: "A more formal or cautious relationship — e.g., a supervisor, client, or someone I don't know well",
+        icon: "🔒",
+        nexus: 3
+      },
+      {
+        label: "Higher safety",
+        desc: "A close, trusting relationship — e.g., a close colleague, peer, or good friend at work",
+        icon: "🔓",
+        next: 3
+      }
+    ]
+  },
+  {
+    id: 3,
+    stepLabel: "Step 4 of 5",
+    question: "How is their emotion affecting their ability to work right now?",
+    hint: "Task momentum refers to whether their current emotional state is helping or hindering their performance",
+    options: [
+      {
+        label: "Low momentum",
+        desc: "Their emotion is overwhelming them — it's clearly interfering with their ability to focus or perform",
+        icon: "⚡",
+        nexus: 4
+      },
+      {
+        label: "High momentum",
+        desc: "They seem to be managing — the emotion isn't stopping them from functioning, and may even be energizing them",
+        icon: "✅",
+        next: 4
+      }
+    ]
+  },
+  {
+    id: 4,
+    stepLabel: "Step 5 of 5",
+    question: "What is the time horizon for the work they need to do?",
+    hint: "Consider whether there is an immediate task or deadline at hand",
+    options: [
+      {
+        label: "Short time horizon",
+        desc: "There is an immediate task, deadline, or action they need to take — now or very soon",
+        icon: "⏰",
+        nexus: 5
+      },
+      {
+        label: "Long time horizon",
+        desc: "No immediate deadline — they have time to process their emotions before needing to act",
+        icon: "📅",
+        nexus: 6
+      }
+    ]
+  }
+];
+
+// ============================================================
+// STATE
+// ============================================================
+
+let state = {
+  view: "intro",   // "intro" | "scenario" | "wizard" | "result"
+  step: 0,
+  answers: [],     // {questionId, optionLabel}[]
+  nexusId: null
+};
+
+// ============================================================
+// RENDER
+// ============================================================
+
+function render() {
+  const app = document.getElementById("app");
+  if (state.view === "intro") app.innerHTML = renderIntro();
+  else if (state.view === "scenario") app.innerHTML = renderScenario();
+  else if (state.view === "wizard") app.innerHTML = renderWizard();
+  else if (state.view === "result") app.innerHTML = renderResult();
+}
+
+function renderIntro() {
+  return `
+    <div class="intro-card">
+      <h2>Navigate Emotion Responses with Confidence</h2>
+      <p>When a colleague expresses an emotion at work, how you respond matters — for them, for you, and for your relationship and team. But the best response isn't one-size-fits-all.</p>
+      <p>This guide walks you through five key contextual factors from peer-reviewed research to identify which <strong>emotion-response strategies</strong> are most likely to lead to positive outcomes in your specific situation.</p>
+      <p style="font-size:.87rem;color:var(--text-light)">Takes about 60 seconds · No login required</p>
+      <button class="start-btn" onclick="startWizard()">Start the Guide →</button>
+    </div>
+
+    <div class="hbr-card">
+      <div class="hbr-label">Interested in learning more?</div>
+      <div class="hbr-items">
+        <a class="hbr-item" href="https://hbr.org/2024/07/when-your-employee-feels-angry-sad-or-dejected" target="_blank">
+          <div class="hbr-item-icon">📖</div>
+          <div class="hbr-item-body">
+            <div class="hbr-item-source">Harvard Business Review</div>
+            <div class="hbr-item-title">How to Respond to the Emotions of Others at Work</div>
+            <div class="hbr-item-byline">Bradley, Greer & Sanchez-Burks (2024)</div>
+          </div>
+          <div class="hbr-item-arrow">→</div>
+        </a>
+        <a class="hbr-item" href="https://hbr.org/podcast/2024/08/the-right-way-to-manage-emotions-on-your-team" target="_blank">
+          <div class="hbr-item-icon">🎙</div>
+          <div class="hbr-item-body">
+            <div class="hbr-item-source">HBR IdeaCast Podcast</div>
+            <div class="hbr-item-title">The Right Way to Manage Emotions on Your Team</div>
+            <div class="hbr-item-byline">Christina Bradley and Lindy Greer in conversation with HBR</div>
+          </div>
+          <div class="hbr-item-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="attribution">
+      This tool is based on: <strong>Bradley, C. M., Greer, L. L., Trinh, E., & Sanchez-Burks, J. (2024).</strong> Responding to the emotions of others at work: A review and integrative theoretical framework for the effects of emotion-response strategies on work-related outcomes. <em>Academy of Management Annals, 18</em>(1), 3–43. <a href="https://doi.org/10.5465/annals.2022.0044" target="_blank" style="color:var(--navy-light)">https://doi.org/10.5465/annals.2022.0044</a>
+    </div>
+  `;
+}
+
+function renderScenario() {
+  return `
+    <div class="question-card" style="text-align:center;padding:3rem 2.5rem">
+      <div class="question-number" style="justify-content:center">Before we begin</div>
+      <div class="question-text" style="font-size:1.5rem;margin-bottom:1rem">Think of a recent moment when someone expressed an emotion to you at work.</div>
+      <p style="color:var(--text-mid);font-size:.97rem;max-width:480px;margin:0 auto 2rem;line-height:1.7">It could be a colleague sharing frustration, a direct report expressing anxiety, a teammate celebrating good news, or any other emotional moment. Hold that specific situation in mind as you work through the questions.</p>
+      <button class="start-btn" onclick="continueToWizard()">I have a situation in mind →</button>
+      <div style="margin-top:1rem">
+        <button class="back-btn" style="display:inline-flex;margin:0 auto" onclick="showIntro()"> Back</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderWizard() {
+  const q = QUESTIONS[state.step];
+  const totalSteps = QUESTIONS.length;
+  const pct = Math.round((state.step / totalSteps) * 100);
+
+  const dotsHtml = QUESTIONS.map((_, i) => {
+    let cls = "";
+    if (i < state.step) cls = "done";
+    else if (i === state.step) cls = "active";
+    return `<div class="step-dot ${cls}"></div>`;
+  }).join("");
+
+  const trailHtml = state.answers.length > 0
+    ? `<div class="context-trail">${state.answers.map(a => `<div class="trail-chip">${a.label}</div>`).join("")}</div>`
+    : "";
+
+  return `
+    <div class="progress-container">
+      <div class="progress-label">${q.stepLabel}</div>
+      <div class="progress-bar-track"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+      <div class="step-dots">${dotsHtml}</div>
+    </div>
+    ${trailHtml}
+    <div class="question-card">
+      <div class="question-number">${q.stepLabel}</div>
+      <div class="question-text">${q.question}</div>
+      <div class="question-hint">${q.hint}</div>
+      <div class="options-grid">
+        ${q.options.map((opt, idx) => `
+          <button class="option-btn" onclick="handleAnswer(${state.step}, ${idx})">
+            <span class="option-icon">${opt.icon}</span>
+            <div class="option-body">
+              <div class="option-label">${opt.label}</div>
+              <div class="option-desc">${opt.desc}</div>
+            </div>
+          </button>
+        `).join("")}
+      </div>
+      ${state.step > 0
+        ? `<button class="back-btn" onclick="goBack()"> Go back</button>`
+        : `<button class="back-btn" onclick="showIntro()"> Start over</button>`}
+    </div>
+  `;
+}
+
+function renderResult() {
+  const nexus = NEXUSES[state.nexusId];
+  const recStrategies = nexus.recommendedStrategies;
+
+  const trailHtml = state.answers.length > 0
+    ? `<div class="context-trail">${state.answers.map(a => `<div class="trail-chip">${a.label}</div>`).join("")}</div>`
+    : "";
+
+  const strategyCardsHtml = recStrategies.map(sid => {
+    const s = STRATEGIES[sid];
+    const qMeta = QUADRANT_META[s.quadrant];
+    return `
+      <div class="strategy-card" onclick="showModal('${sid}')">
+        <div class="strategy-card-name">
+          <span class="card-icon" style="background:${qMeta.bg};color:${qMeta.color}">★</span>
+          ${s.name}
+        </div>
+        <div class="strategy-card-def">${s.definition}</div>
+        ${s.example ? `<div class="strategy-card-example">${s.example}</div>` : ""}
+        <div class="strategy-card-more">Tap for full definition →</div>
+      </div>
+    `;
+  }).join("");
+
+  const recNote = nexus.recNote ? `<p style="font-size:.85rem;color:var(--text-mid);margin-top:.6rem;font-style:italic;line-height:1.6"><strong>Note:</strong> ${nexus.recNote}</p>` : "";
+  const sequenceTip = nexus.sequenceTip ? `
+    <div class="sequence-tip">
+      <div class="sequence-tip-label">🔄 Consider a sequence of strategies</div>
+      <div class="sequence-tip-text">${nexus.sequenceTip}</div>
+    </div>` : "";
+  const avoidNote = nexus.avoidNote ? `
+    <div style="background:#FEF9EC;border:1.5px solid #E8C85A;border-radius:12px;padding:1rem 1.25rem;margin-top:1rem;font-size:.85rem;color:var(--text-mid);line-height:1.6">
+      <strong style="color:#92660A">⚠ Strategies likely to backfire here:</strong> ${nexus.avoidNote}
+    </div>` : "";
+
+  return `
+    <div class="result-container">
+      ${trailHtml}
+      <div class="result-header">
+        <div class="nexus-badge"><span class="dot"></span>${nexus.badge}</div>
+        <h2>${nexus.title}</h2>
+        <div class="result-synopsis">${nexus.synopsis}</div>
+        <div class="result-desc">${nexus.description}</div>
+        ${avoidNote}
+        <button class="restart-btn" onclick="showIntro()">↺ Try a different situation</button>
+      </div>
+
+      <div class="section-label">Recommended Strategies — Click any to see the full definition</div>
+      <div class="rec-strategies-grid">${strategyCardsHtml}</div>
+      ${recNote}
+      ${sequenceTip}
+
+      <div class="section-label">Where These Strategies Sit — The Two-Dimensional Landscape</div>
+      <div class="landscape-wrapper">
+        <div class="landscape-title">Emotion-Response Strategy Landscape</div>
+        ${renderLandscape(nexus)}
+      </div>
+
+      <div class="section-label">Key Insights from the Research</div>
+      <div class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-icon">⚠️</div>
+          <div class="insight-body">
+            <div class="insight-title">Most of us default toward change — but it's often not the best first step</div>
+            <div class="insight-text">Research shows that <strong>84% of people</strong> respond to someone's distress with advice-giving or attempts to fix the emotion rather than simply validating it. Yet lower change-oriented strategies are recommended in <strong>5 out of 6</strong> contextual situations. Your instinct to "do something" may actually be working against you.</div>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">🪞</div>
+          <div class="insight-body">
+            <div class="insight-title">Check whose discomfort is driving your response</div>
+            <div class="insight-text">We often rush to change or fix others' emotions because their negative feelings are uncomfortable <em>for us</em> — not because change is what they need. Emotions are contagious, and our desire to make them stop can be about managing our own distress rather than genuinely helping the other person.</div>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">👁</div>
+          <div class="insight-body">
+            <div class="insight-title">Stay attuned and be ready to adapt</div>
+            <div class="insight-text">Skilled emotional responders <strong>observe how their response lands</strong> and adjust accordingly. If your first strategy isn't working — if the person seems more distressed, withdrawn, or unresponsive — that's a signal to shift. Flexibility matters as much as the initial choice.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="attribution" style="margin-top:1.5rem">
+        <strong>Bradley, C. M., Greer, L. L., Trinh, E., & Sanchez-Burks, J. (2024).</strong><br>
+        Responding to the emotions of others at work: A review and integrative theoretical framework.<br>
+        <em>Academy of Management Annals, 18</em>(1), 3–43. <a href="https://doi.org/10.5465/annals.2022.0044" target="_blank" style="color:var(--navy-light)">doi:10.5465/annals.2022.0044</a>
+      </div>
+    </div>
+  `;
+}
+
+function renderLandscape(nexus) {
+  const highlighted = nexus.recommendedQuadrants;
+  const recommended = nexus.recommendedStrategies;
+
+  // Build each quadrant
+  // Layout matches paper Figure 4: top-left = hi_lc, top-right = hi_hc, bottom-left = li_lc, bottom-right = li_hc
+  const quadrantOrder = ["hi_lc", "hi_hc", "li_lc", "li_hc"];
+
+  const quadrantsHtml = quadrantOrder.map(qid => {
+    const isHighlighted = highlighted.includes(qid);
+    const strategies = QUADRANT_STRATEGIES[qid];
+    const meta = QUADRANT_META[qid];
+
+    const pillsHtml = strategies.map(sid => {
+      const s = STRATEGIES[sid];
+      const isRec = recommended.includes(sid);
+      return `<button class="pill ${isRec ? "recommended" : ""}"
+                      onclick="showModal('${sid}')"
+                      title="${s.definition}">
+                ${s.name}${isRec ? '<span class="pill-star">★</span>' : ''}
+              </button>`;
+    }).join("");
+
+    const labelLines = meta.label.split("\n");
+
+    return `
+      <div class="quadrant ${qid} ${isHighlighted ? "highlighted" : "dimmed"}">
+        <div class="quadrant-label">${labelLines.join("<br>")}</div>
+        <div class="strategy-pills">${pillsHtml}</div>
+      </div>
+    `;
+  }).join("");
+
+  return `
+    <div class="landscape-axes-wrapper">
+      <div class="axis-labels-h">
+        <span class="axis-label-text">← Lower Change</span>
+        <span class="axis-label-text">Higher Change →</span>
+      </div>
+      <div style="position:relative;display:flex">
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:space-between;width:28px;padding:4px 0">
+          <span style="font-size:.62rem;font-weight:700;color:var(--text-light);writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap">Higher Inv. ↑</span>
+          <span style="font-size:.62rem;font-weight:700;color:var(--text-light);writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap">↓ Lower Inv.</span>
+        </div>
+        <div style="flex:1">
+          <div class="landscape-grid">${quadrantsHtml}</div>
+        </div>
+      </div>
+      <div style="font-size:.73rem;color:var(--text-light);text-align:center;margin-top:.75rem;font-style:italic">
+        ★ Starred strategies are recommended for your situation · Click any strategy to see its definition
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:.75rem">
+        ${Object.entries(QUADRANT_META).map(([qid, meta]) => `
+          <span style="display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:600;color:${meta.color}">
+            <span style="width:10px;height:10px;border-radius:3px;background:${meta.bg};border:1.5px solid ${meta.color};display:inline-block"></span>
+            ${meta.label.replace("\n"," · ")}
+          </span>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
+// ============================================================
+// INTERACTIONS
+// ============================================================
+
+function startWizard() {
+  state = { view: "scenario", step: 0, answers: [], nexusId: null };
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function continueToWizard() {
+  state.view = "wizard";
+  state.step = 0;
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showIntro() {
+  state = { view: "intro", step: 0, answers: [], nexusId: null };
+  render();
+}
+
+function handleAnswer(stepIndex, optionIndex) {
+  const q = QUESTIONS[stepIndex];
+  const opt = q.options[optionIndex];
+
+  state.answers.push({ label: opt.label });
+
+  if (opt.nexus != null) {
+    // Terminal: show result
+    state.nexusId = opt.nexus;
+    state.view = "result";
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else if (opt.next != null) {
+    state.step = opt.next;
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
+
+function goBack() {
+  if (state.step > 0) {
+    // Find previous step
+    state.answers.pop();
+    // Find the previous question index based on next/nexus chain
+    // We'll just decrement step by 1 and replay from answers
+    replayAnswers();
+  }
+}
+
+function replayAnswers() {
+  const prevAnswers = [...state.answers];
+  state = { view: "wizard", step: 0, answers: [], nexusId: null };
+
+  // Replay all but the last answer to find the current step
+  for (const answer of prevAnswers) {
+    const q = QUESTIONS[state.step];
+    const matchingOption = q.options.find(o => o.label === answer.label);
+    if (!matchingOption) break;
+    if (matchingOption.next != null) {
+      state.answers.push({ label: matchingOption.label });
+      state.step = matchingOption.next;
+    }
+  }
+  render();
+}
+
+// ============================================================
+// MODAL
+// ============================================================
+
+function showModal(strategyId) {
+  const s = STRATEGIES[strategyId];
+  const qMeta = QUADRANT_META[s.quadrant];
+  const labelLines = qMeta.label.split("\n");
+
+  document.getElementById("modal-content").innerHTML = `
+    <div class="modal-quadrant-tag" style="background:${qMeta.bg};color:${qMeta.color}">${labelLines.join(" · ")}</div>
+    <div class="modal-strategy-name">${s.name}</div>
+    <div class="modal-definition-label">Definition</div>
+    <div class="modal-definition">${s.definition}</div>
+    ${s.example ? `
+      <div class="modal-example-label">Example</div>
+      <div class="modal-example">${s.example}</div>
+    ` : ""}
+    <div class="modal-source">Source: ${s.source}</div>
+  `;
+
+  const modal = document.getElementById("strategy-modal");
+  modal.removeAttribute("hidden");
+  modal.focus();
+}
+
+function hideModal() {
+  document.getElementById("strategy-modal").setAttribute("hidden", "");
+}
+
+document.getElementById("modal-close-btn").addEventListener("click", hideModal);
+
+document.getElementById("strategy-modal").addEventListener("click", function(e) {
+  if (e.target === this) hideModal();
+});
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") hideModal();
+});
+
+// ============================================================
+// INIT
+// ============================================================
+
+render();
+
+// ============================================================
+// IFRAME COMMUNICATION (when embedded in christinambradley.com)
+// ============================================================
+
+(function() {
+  if (window.self === window.top) return; // not in an iframe, do nothing
+
+  // Hide the standalone site header — the Astro page provides the title
+  var siteHeader = document.querySelector('.site-header');
+  if (siteHeader) siteHeader.style.display = 'none';
+
+  // Tell the parent page how tall the guide content is so it can resize the iframe
+  function reportHeight() {
+    window.parent.postMessage({ type: 'guide-resize', height: document.documentElement.scrollHeight }, '*');
+  }
+  if (window.ResizeObserver) {
+    new ResizeObserver(reportHeight).observe(document.documentElement);
+  }
+  reportHeight();
+
+  // When the guide navigates between steps, tell the parent to scroll to the top of the iframe
+  var _scrollTo = window.scrollTo.bind(window);
+  window.scrollTo = function(opts) {
+    _scrollTo(opts);
+    window.parent.postMessage({ type: 'guide-scroll-top' }, '*');
+  };
+})();
+</script>
+</body>
+</html>
